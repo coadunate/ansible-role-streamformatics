@@ -1,0 +1,9 @@
+---
+# tasks file for ansible-role-streamformatics
+
+
+- include: redhat-main.yml
+  when: ansible_os_family == 'Redhat'
+
+- include: debian-main.yml
+  when: ansible_os_family == 'Debian'
