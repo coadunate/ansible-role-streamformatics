@@ -1,2 +1,10 @@
-- name: 
-  shell: echo "hie"
+- name: Ensure that the software folder already exists
+  file: path="{{ ansible_env.PWD }}/software" state=directory mode=0777
+
+- name: Clone the streamformatics github repository
+  git:
+     repo: https://github.com/mbhall88/streamformatics.git 
+     dest: "{{ ansible_env.PWD }}/software/streamformatics"
+     clone: yes
+     update: yes
+
