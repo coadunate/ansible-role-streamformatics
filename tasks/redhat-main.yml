@@ -12,3 +12,11 @@
 - name: Install packages based on package.json.
   npm:
     path: "{{ ansible_env.PWD }}/software/streamformatics"
+
+- name: Install h5py and watchdog python packages
+  pip: name={{ item }}
+  with_items:
+    - h5py
+    - watchdog
+
+- include: minimap2.yml

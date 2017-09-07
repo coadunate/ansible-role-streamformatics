@@ -28,3 +28,5 @@
   with_items:
     - h5py
     - watchdog
+
+- include: minimap2.yml

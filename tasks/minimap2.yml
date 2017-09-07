@@ -1,0 +1,6 @@
+- name: Clone the minimap2 from the repository
+  git:
+      repo: https://github.com/lh3/minimap2
+      dest: "{{ ansible_env.PWD}}/software/minimap2-src"
+      clone: yes
+      update: yes
