@@ -1,0 +1,19 @@
+- name: Clone the Japsa github repository
+  git:
+      repo: https://github.com/mdcao/japsa.git
+      dest: "{{ ansible_env.PWD}}/software/japsa-src"
+      clone: yes
+      update: yes
+
+- name: Run the make on the japsa
+  command: "make install INSTALL_DIR={{ ansible_env.PWD }}/software/japsa MXMEM=7000m SERVER=true JLP=false"
+  args:
+      chdir: "{{ ansible_env.PWD }}/software/japsa-src"
+
+- name: Remove the source files of japsa
+  file:
+    path: "{{ ansible_env.PWD}}/software/japsa-src"
+    state: absent
+
+- name: "Add japsa to .bashrc"
+  shell: echo export PATH={{ ansible_env.PWD }}/software/japsa/bin:$PATH >> {{ ansible_env.PWD }}/.bashrc
