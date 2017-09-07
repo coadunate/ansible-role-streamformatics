@@ -8,10 +8,10 @@
      clone: yes
      update: yes
 
-- name: Clone the Jaspa github repository
+- name: Clone the Japsa github repository
   git:
       repo: https://github.com/mdcao/japsa.git
-      dest: "{{ ansible_env.PWD}}/software/jaspa-src"
+      dest: "{{ ansible_env.PWD}}/software/japsa-src"
       clone: yes
       update: yes
 
@@ -22,7 +22,12 @@
   become: true
   become_user: root
 
-- name: Run the make on the jaspa 
-  command: "make install INSTALL_DIR={{ ansible_env.PWD }}/software/jaspa MXMEM=7000m SERVER=true JLP=false"
+- name: Run the make on the japsa 
+  command: "make install INSTALL_DIR={{ ansible_env.PWD }}/software/japsa MXMEM=7000m SERVER=true JLP=false"
   args:
-      chdir: "{{ ansible_env.PWD }}/software/jaspa-src"
+      chdir: "{{ ansible_env.PWD }}/software/japsa-src"
+
+- name: Remove the source files of japsa
+  file:
+    path: "{{ ansible_env.PWD}}/software/japsa-src"
+    state: absent
